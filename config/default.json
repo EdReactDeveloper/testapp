@@ -1,0 +1,3 @@
+{
+	"mongoURI": "mongodb+srv://EdReact:password1234567@cluster0.jtnk1.mongodb.net/testapp?retryWrites=true&w=majority"
+}
