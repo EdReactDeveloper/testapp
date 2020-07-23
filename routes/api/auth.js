@@ -4,6 +4,7 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
+const List = require('../../models/List'); 
 
 router.post(
 	'/register',
@@ -30,13 +31,17 @@ router.post(
 				password: cryptedPassword,
 				boards: []
 			});
-
+			const list = new List({
+				list: [],
+				userId: user._id
+			})
+			await list.save();
 			await user.save();
-			return res.json(user);
+			
+			return res.json({email: user.email, id: user._id});
 		} catch (error) {
-			res.status(400).json(error);
+			return res.status(400).json(error);
 		}
-		return res.json(req.body);
 	}
 );
 
@@ -51,23 +56,23 @@ router.post(
 		if (!errors.isEmpty()) {
 			return res.status(400).json({ errors: errors.array() });
 		}
-
+		console.log(req.body)
 		const { email, password } = req.body;
 		try {
 			const user = await User.findOne({ email });
 			if (!user) {
-				return res.status(404).json({ errors: [ { msg: 'wrong email' } ] });
+				return res.status(404).json({ errors: [ { msg: 'wrong email or password' } ] });
 			}
 			const match = await bcrypt.compare(password, user.password);
 			if (!match) {
-				return res.status(400).json({ errors: [ { msg: 'wrong password' } ] });
+				return res.status(400).json({ errors: [ { msg: 'wrong email or password' } ] });
 			}
 
 			req.session.user = user;
 			req.session.isLoggedIn = true;
 			await req.session.save();
 
-			return res.json(user);
+			return res.json({email: user.email, id: user._id});
 		} catch (error) {
 			res.status(400).json(error);
 		}

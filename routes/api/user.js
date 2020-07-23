@@ -5,12 +5,12 @@ const User = require('../../models/User');
 
 router.get('/', async (req, res) => {
 	try {
-		const user = await User.findById(req.session.user._id).select('-password');
+		const user = await User.findById(req.session.user._id);
 		if (!user) {
 			return res.status(400).json('unauthorized');
 		}
 
-		return res.json(user);
+		return res.json({email: user.email, id: user._id});
 	} catch (error) {
 		res.status(400).json(error);
 	}

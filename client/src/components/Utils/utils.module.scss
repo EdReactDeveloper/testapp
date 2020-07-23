@@ -1,0 +1,24 @@
+.center{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.padding{
+  padding: 30px; 
+}
+
+.block{
+  display: block;
+  width: 100%;
+}
+
+.fetching{
+  border: 3px solid orange;
+  box-sizing: border-box;
+}
+
+.removing{
+  border: 3px solid red;
+  box-sizing: border-box;
+}

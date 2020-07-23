@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router'
+import Routes from './routes';
+import store from './store';
+import style from './App.module.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import history from './history';
+import getUserAction from './store/actions/user';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+	useEffect(() => {
+		store.dispatch(getUserAction())
+	}, [])
+	return (
+		<div className={style.app}>
+			<Provider store={store}>
+				<ConnectedRouter history={history}>
+					<Routes />
+				</ConnectedRouter>
+			</Provider>
+		</div>
+	);
 }
 
 export default App;
