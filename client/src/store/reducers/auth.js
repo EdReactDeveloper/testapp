@@ -13,7 +13,7 @@ import { GET_USER_SUCCESS, GET_USER_FAIL } from '../actions/types/user';
 
 const initialState = {
 	user: null,
-	loading: false,
+	loading: true,
 	loggedIn: false,
 	message: ''
 };

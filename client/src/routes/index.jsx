@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import AuthRoute from './AuthRoute';
 import HeaderFooter from '../containers/HeaderFooter';
@@ -9,11 +8,8 @@ import Register from '../containers/Register';
 import User from '../containers/User'; 
 import Alert from '../containers/Alert';
 
-const Routes = (props) => {
+const Routes = () => {
 
-  const dispatch = useDispatch()
-  const {user,loading} = useSelector(state => state.auth)
- 
   return (
     <Router>
       <HeaderFooter>

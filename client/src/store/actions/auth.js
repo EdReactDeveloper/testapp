@@ -33,7 +33,7 @@ export const registerAction = (payload, history) => async dispatch=>{
   catch (error) {
     const {errors} = error.response.data
     dispatch({type: REGISTER_FAIL})
-    errors && errors.forEach(err=> dispatch(setAlert(err.msg, 'danger')))
+    errors && errors.forEach(err => dispatch(setAlert(err.msg, 'danger')))
   }
 }
 

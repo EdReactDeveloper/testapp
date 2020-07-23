@@ -27,7 +27,7 @@ const Items = (payload) => {
               <td>Loading...</td>
             </tr>
           }
-          {/* render list */}
+          {/* render  */}
           {array && !loading && array.map((item, i) => <Item item={item} payload={payload} i={i} key={item._id} /> )}
 
         </tbody>

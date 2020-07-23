@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Register from '../components/Auth/Register';
 import { validateLength, isEmail } from '../validators'
 import { registerAction } from '../store/actions/auth';
-import setAlert from './Alert'; 
+import setAlert from '../store/actions/alert'; 
 
 const RegisterContainer = ({ history }) => {
   const dispatch = useDispatch();
